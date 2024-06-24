@@ -1,16 +1,16 @@
-﻿#include "drv/drv.h"
+#include "drv/drv.h"
 
 int main()
 {
-	HANDLE drv = initDrv();
+    HANDLE drv = initDrv();
 
-	if (drv == INVALID_HANDLE_VALUE || drv < 0)
-	{
-		printf("Failed to load driver.\n");
-		return 1;
-	}
-	
-	printf("Driver loaded\n");
+    if (drv == INVALID_HANDLE_VALUE || drv < 0)
+    {
+        printf("Failed to load driver.\n");
+        return 1;
+    }
+    
+    printf("Driver loaded\n");
 
     int value = 4;
     int newValue = 1337;
@@ -39,17 +39,17 @@ int main()
 
     DWORD64 lsassBase = 0;
     if (drvGetBaseAddr(drv, 1840, (PVOID*)&lsassBase))
-		printf("lsass.exe base address: %llx\n", lsassBase);
+        printf("lsass.exe base address: %llx\n", lsassBase);
 
-	BOOL unload = unloadDrv();
+    BOOL unload = unloadDrv();
 
-	if (!unload)
-	{
-		printf("Failed to unload driver.\n");
-		return 1;
-	}
+    if (!unload)
+    {
+        printf("Failed to unload driver.\n");
+        return 1;
+    }
 
-	printf("Driver unloaded.\n");
+    printf("Driver unloaded.\n");
 
-	return 0;
+    return 0;
 }
